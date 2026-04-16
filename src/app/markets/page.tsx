@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import type { Metadata } from 'next';
 import MarketCard from '@/components/market/MarketCard';
 import { markets, categories, regions } from '@/data/mockData';
