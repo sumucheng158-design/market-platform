@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import type { Metadata } from 'next';
 import VendorCard from '@/components/vendor/VendorCard';
 import { vendors, categories } from '@/data/mockData';
