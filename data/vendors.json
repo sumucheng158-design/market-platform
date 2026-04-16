@@ -1,0 +1,110 @@
+[
+  {
+    "id": "vendor-001",
+    "brandName": "土語陶器",
+    "description": "以台灣土為媒介，燒製具有溫度感的日常器皿。每件作品都是手工拉坯，承載著土與火的記憶。",
+    "productType": "手作",
+    "coverImage": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80"
+    ],
+    "instagram": "tuyuceramics",
+    "contact": "tuyuceramics@gmail.com",
+    "marketIds": ["market-001", "market-004"],
+    "featured": true
+  },
+  {
+    "id": "vendor-002",
+    "brandName": "植物系生活",
+    "description": "將植物融入生活的每個角落。手工蠟燭、植物乾燥花與香氛產品，為你打造有香氣的家。",
+    "productType": "文創",
+    "coverImage": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80"
+    ],
+    "instagram": "plantlife.studio",
+    "contact": "hello@plantlife.tw",
+    "marketIds": ["market-001"],
+    "featured": false
+  },
+  {
+    "id": "vendor-003",
+    "brandName": "字跡印製所",
+    "description": "活版印刷工作室，以傳統工藝復刻文字的重量感。明信片、書籤、文具，每一張都是絕版。",
+    "productType": "文創",
+    "coverImage": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80"
+    ],
+    "instagram": "letterpress.tw",
+    "marketIds": ["market-001"],
+    "featured": true
+  },
+  {
+    "id": "vendor-004",
+    "brandName": "阿嬤的手路菜",
+    "description": "傳承三代的台灣傳統小食，滷味、糕點、古早味飲料。用記憶中的味道，讓人找到家的感覺。",
+    "productType": "美食",
+    "coverImage": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80",
+    "images": [],
+    "instagram": "grandma.kitchen.tw",
+    "marketIds": ["market-002"],
+    "featured": false
+  },
+  {
+    "id": "vendor-005",
+    "brandName": "野草甜點工作室",
+    "description": "用台灣在地食材製作的法式甜點，洛神花塔、番石榴慕斯、紫地瓜馬卡龍。土地的甜。",
+    "productType": "美食",
+    "coverImage": "https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=800&q=80",
+    "images": [],
+    "instagram": "wildgrass.patisserie",
+    "marketIds": ["market-002"],
+    "featured": true
+  },
+  {
+    "id": "vendor-006",
+    "brandName": "再生衣物所",
+    "description": "精選 70-90 年代復古古著，每件都經過清洗整理。倡導慢時尚，讓好衣服繼續被穿著。",
+    "productType": "二手",
+    "coverImage": "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&q=80",
+    "images": [],
+    "instagram": "rebornclothes",
+    "marketIds": ["market-003"],
+    "featured": false
+  },
+  {
+    "id": "vendor-007",
+    "brandName": "木工工作室 MOKU",
+    "description": "以台灣原木手工製作的生活器物，筷架、托盤、書架。木頭的紋理是最好的設計。",
+    "productType": "手作",
+    "coverImage": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80",
+    "images": [],
+    "instagram": "moku.woodwork",
+    "marketIds": ["market-004", "market-005"],
+    "featured": false
+  },
+  {
+    "id": "vendor-008",
+    "brandName": "海港設計鋪",
+    "description": "以高雄港為靈感的設計品牌，T-shirt、海報、徽章，把南方的驕傲穿在身上。",
+    "productType": "文創",
+    "coverImage": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&q=80",
+    "images": [],
+    "instagram": "harbor.design.ks",
+    "marketIds": ["market-005"],
+    "featured": false
+  },
+  {
+    "id": "vendor-009",
+    "brandName": "青松有機農場",
+    "description": "在竹北耕作二十年的家族農場，堅持無農藥栽培。每週帶來最新鮮的時令蔬果直接給您。",
+    "productType": "美食",
+    "coverImage": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80",
+    "images": [],
+    "contact": "0912-345-678",
+    "marketIds": ["market-006"],
+    "featured": false
+  }
+]

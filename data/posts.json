@@ -1,0 +1,42 @@
+[
+  {
+    "id": "post-001",
+    "title": "2025 台北市集推薦｜10 個週末必逛的文青市集",
+    "slug": "taipei-markets-2025",
+    "excerpt": "從大安區的巷弄手作市集到信義區的設計展，這些台北市集讓每個週末都值得期待。",
+    "coverImage": "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&q=80",
+    "publishedAt": "2025-04-15",
+    "tags": ["台北", "文創", "週末"],
+    "readingTime": 5
+  },
+  {
+    "id": "post-002",
+    "title": "台中老宅市集完全指南｜怎麼去、停哪裡、吃什麼",
+    "slug": "taichung-old-house-market-guide",
+    "excerpt": "台中的老宅市集近年大爆發，帶你找到最值得排隊的攤位，以及附近的咖啡廳推薦。",
+    "coverImage": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+    "publishedAt": "2025-04-10",
+    "tags": ["台中", "美食", "老宅"],
+    "readingTime": 7
+  },
+  {
+    "id": "post-003",
+    "title": "為什麼越來越多人愛逛二手市集？循環時尚的興起",
+    "slug": "secondhand-market-trend",
+    "excerpt": "二手市集不只是撿便宜，更是一種生活態度的選擇。我們採訪了幾位常客，聽他們說說為什麼。",
+    "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "publishedAt": "2025-04-05",
+    "tags": ["二手", "永續", "生活態度"],
+    "readingTime": 4
+  },
+  {
+    "id": "post-004",
+    "title": "高雄駁二藝術特區市集攻略｜南部文青必訪聖地",
+    "slug": "kaohsiung-pier2-market",
+    "excerpt": "駁二的倉庫群變身成全台最有個性的創意市集場地，這裡有哪些品牌值得特別關注？",
+    "coverImage": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    "publishedAt": "2025-03-28",
+    "tags": ["高雄", "文創", "駁二"],
+    "readingTime": 6
+  }
+]

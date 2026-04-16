@@ -1,0 +1,6 @@
+[
+  { "id": "文創", "label": "文創", "emoji": "🎨", "color": "#8c7050", "bgColor": "#f7f0e3" },
+  { "id": "美食", "label": "美食", "emoji": "🍱", "color": "#c06a52", "bgColor": "#fdf0ec" },
+  { "id": "手作", "label": "手作", "emoji": "🧵", "color": "#7a9b6e", "bgColor": "#e8ede4" },
+  { "id": "二手", "label": "二手", "emoji": "♻️", "color": "#5a7a8c", "bgColor": "#e4ecf0" }
+]
