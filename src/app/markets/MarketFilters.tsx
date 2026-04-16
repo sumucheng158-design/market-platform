@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import type { Category, Region } from '@/data/mockData';
 
 interface Props {
@@ -22,9 +22,8 @@ export default function MarketFilters({ categories, regions, selectedCategory, s
 
   return (
     <div className="space-y-4">
-      {/* Category Filter */}
       <div>
-        <p className="text-xs font-semibold text-latte-600 uppercase tracking-wider mb-3">類型</p>
+        <p className="text-xs font-semibold text-latte-500 uppercase tracking-widest mb-3">類型</p>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => update('category', undefined)}
@@ -36,17 +35,19 @@ export default function MarketFilters({ categories, regions, selectedCategory, s
             <button
               key={cat.id}
               onClick={() => update('category', selectedCategory === cat.slug ? undefined : cat.slug)}
-              className={`tag transition-all ${selectedCategory === cat.slug ? 'bg-latte-700 text-cream-50' : `${cat.color} hover:opacity-80`}`}
+              className={`tag transition-all inline-flex items-center gap-1.5 ${selectedCategory === cat.slug ? 'bg-latte-700 text-cream-50' : `${cat.color} ${cat.textColor} hover:opacity-80`}`}
             >
-              {cat.icon} {cat.name}
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d={cat.iconPath} />
+              </svg>
+              {cat.name}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Region Filter */}
       <div>
-        <p className="text-xs font-semibold text-latte-600 uppercase tracking-wider mb-3">地區</p>
+        <p className="text-xs font-semibold text-latte-500 uppercase tracking-widest mb-3">地區</p>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => update('region', undefined)}

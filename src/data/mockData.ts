@@ -4,14 +4,16 @@ export type Category = {
   id: string;
   name: string;
   slug: string;
-  icon: string;
+  iconPath: string; // SVG path data
   color: string;
+  textColor: string;
 };
 
 export type Region = {
   id: string;
   name: string;
   slug: string;
+  iconPath: string;
 };
 
 export type Vendor = {
@@ -70,24 +72,44 @@ export type Article = {
   readTime: number;
 };
 
+// SVG icon paths for categories (stroke-based, viewBox 0 0 24 24)
+export const CATEGORY_ICONS: Record<string, string> = {
+  art: 'M12 19l7-7 3 3-7 7-3-3z M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z M2 2l7.586 7.586 M11 11a2 2 0 1 0 4 0 2 2 0 0 0-4 0',
+  food: 'M18 8h1a4 4 0 0 1 0 8h-1 M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z M6 1v3 M10 1v3 M14 1v3',
+  craft: 'M12 19l7-7 3 3-7 7-3-3z M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z',
+  vintage: 'M3 7h18 M3 12h18 M3 17h18 M8 3v4 M16 3v4',
+  plant: 'M12 22V12 M12 12C12 7 7 3 3 3c0 4 3 8 9 9 M12 12c0-5 5-9 9-9-1 4-4 8-9 9',
+  music: 'M9 18V5l12-2v13 M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0 M21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0',
+};
+
+// SVG icon paths for regions
+export const REGION_ICONS: Record<string, string> = {
+  taipei: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10',
+  taichung: 'M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z M12 7v3l2 2',
+  tainan: 'M2 20h20 M4 20V8l8-6 8 6v12 M9 20v-8h6v8',
+  kaohsiung: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z',
+  hsinchu: 'M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83',
+  hualien: 'M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z M9.5 9a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0z',
+};
+
 // ─── Categories ────────────────────────────────────────────────
 export const categories: Category[] = [
-  { id: 'cat-1', name: '文創藝術', slug: 'art', icon: '🎨', color: 'bg-rose-100 text-rose-700' },
-  { id: 'cat-2', name: '美食小吃', slug: 'food', icon: '🍜', color: 'bg-amber-100 text-amber-700' },
-  { id: 'cat-3', name: '手作工藝', slug: 'craft', icon: '✂️', color: 'bg-emerald-100 text-emerald-700' },
-  { id: 'cat-4', name: '二手古物', slug: 'vintage', icon: '🪴', color: 'bg-purple-100 text-purple-700' },
-  { id: 'cat-5', name: '植物綠意', slug: 'plant', icon: '🌿', color: 'bg-green-100 text-green-700' },
-  { id: 'cat-6', name: '音樂表演', slug: 'music', icon: '🎵', color: 'bg-blue-100 text-blue-700' },
+  { id: 'cat-1', name: '文創藝術', slug: 'art',     iconPath: CATEGORY_ICONS.art,     color: 'bg-rose-50',    textColor: 'text-rose-700' },
+  { id: 'cat-2', name: '美食小吃', slug: 'food',    iconPath: CATEGORY_ICONS.food,    color: 'bg-amber-50',   textColor: 'text-amber-700' },
+  { id: 'cat-3', name: '手作工藝', slug: 'craft',   iconPath: CATEGORY_ICONS.craft,   color: 'bg-emerald-50', textColor: 'text-emerald-700' },
+  { id: 'cat-4', name: '二手古物', slug: 'vintage', iconPath: CATEGORY_ICONS.vintage, color: 'bg-purple-50',  textColor: 'text-purple-700' },
+  { id: 'cat-5', name: '植物綠意', slug: 'plant',   iconPath: CATEGORY_ICONS.plant,   color: 'bg-green-50',   textColor: 'text-green-700' },
+  { id: 'cat-6', name: '音樂表演', slug: 'music',   iconPath: CATEGORY_ICONS.music,   color: 'bg-blue-50',    textColor: 'text-blue-700' },
 ];
 
 // ─── Regions ───────────────────────────────────────────────────
 export const regions: Region[] = [
-  { id: 'reg-1', name: '台北', slug: 'taipei' },
-  { id: 'reg-2', name: '台中', slug: 'taichung' },
-  { id: 'reg-3', name: '台南', slug: 'tainan' },
-  { id: 'reg-4', name: '高雄', slug: 'kaohsiung' },
-  { id: 'reg-5', name: '新竹', slug: 'hsinchu' },
-  { id: 'reg-6', name: '花蓮', slug: 'hualien' },
+  { id: 'reg-1', name: '台北', slug: 'taipei',    iconPath: REGION_ICONS.taipei },
+  { id: 'reg-2', name: '台中', slug: 'taichung',  iconPath: REGION_ICONS.taichung },
+  { id: 'reg-3', name: '台南', slug: 'tainan',    iconPath: REGION_ICONS.tainan },
+  { id: 'reg-4', name: '高雄', slug: 'kaohsiung', iconPath: REGION_ICONS.kaohsiung },
+  { id: 'reg-5', name: '新竹', slug: 'hsinchu',   iconPath: REGION_ICONS.hsinchu },
+  { id: 'reg-6', name: '花蓮', slug: 'hualien',   iconPath: REGION_ICONS.hualien },
 ];
 
 // ─── Vendors ───────────────────────────────────────────────────
@@ -118,6 +140,7 @@ export const vendors: Vendor[] = [
     coverImage: 'https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=600&q=80',
     images: [
       'https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=800&q=80',
+      'https://images.unsplash.com/photo-1559181567-c3190bea1e93?w=800&q=80',
     ],
     instagram: '@island.pickles',
     contact: 'island.pickles@gmail.com',
@@ -134,6 +157,7 @@ export const vendors: Vendor[] = [
     coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
     images: [
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+      'https://images.unsplash.com/photo-1594040226829-7f251ab46d80?w=800&q=80',
     ],
     instagram: '@mori.dyeing',
     marketIds: ['m-2', 'm-4'],
@@ -146,9 +170,10 @@ export const vendors: Vendor[] = [
     slug: 'oldtime-vintage',
     category: 'vintage',
     description: '從日本、歐洲蒐羅的老件，每件都有自己的故事。販售家居老件、古著服飾。',
-    coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80',
+      'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80',
     ],
     instagram: '@oldtime.vintage',
     marketIds: ['m-3', 'm-5'],
@@ -164,6 +189,7 @@ export const vendors: Vendor[] = [
     coverImage: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80',
     images: [
       'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80',
+      'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80',
     ],
     instagram: '@chadi.coffee',
     contact: 'chadi.coffee@gmail.com',
@@ -181,6 +207,7 @@ export const vendors: Vendor[] = [
     coverImage: 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80',
     images: [
       'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=800&q=80',
+      'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80',
     ],
     instagram: '@letterpress.tw',
     marketIds: ['m-2', 'm-5'],
@@ -230,6 +257,7 @@ export const markets: Market[] = [
     coverImage: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=1200&q=80',
     images: [
       'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1559181567-c3190bea1e93?w=1200&q=80',
     ],
     date: '2025-05-03',
     endDate: '2025-05-04',
@@ -255,9 +283,10 @@ export const markets: Market[] = [
     slug: 'vintage-swap-party',
     tagline: '你的舊物，是別人的寶藏',
     description: '以物易物的年代回來了。帶著你不再需要的老物件，找到真正珍惜它的新主人。古著、黑膠、老相機、古書，都在這裡流轉。',
-    coverImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&q=80',
     images: [
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+      'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&q=80',
+      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&q=80',
     ],
     date: '2025-05-10',
     time: '13:00 – 20:00',
@@ -285,6 +314,7 @@ export const markets: Market[] = [
     coverImage: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1200&q=80',
     images: [
       'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1200&q=80',
+      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80',
     ],
     date: '2025-05-17',
     time: '09:00 – 16:00',
@@ -309,9 +339,10 @@ export const markets: Market[] = [
     slug: 'paper-and-words-fest',
     tagline: '給愛書人的市集',
     description: '獨立書店、手作文具、zine 創作者的聚集地。在這裡你能找到獨立出版品、手工線裝書、以及各種讓你想提筆的文具。',
-    coverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80',
     images: [
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&q=80',
+      'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80',
+      'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=1200&q=80',
     ],
     date: '2025-05-24',
     endDate: '2025-05-25',
@@ -377,43 +408,34 @@ export const articles: Article[] = [
 export function getMarketById(id: string): Market | undefined {
   return markets.find((m) => m.id === id);
 }
-
 export function getMarketBySlug(slug: string): Market | undefined {
   return markets.find((m) => m.slug === slug);
 }
-
 export function getVendorById(id: string): Vendor | undefined {
   return vendors.find((v) => v.id === id);
 }
-
 export function getVendorBySlug(slug: string): Vendor | undefined {
   return vendors.find((v) => v.slug === slug);
 }
-
 export function getVendorsByMarket(marketId: string): Vendor[] {
   const market = getMarketById(marketId);
   if (!market) return [];
   return market.vendorIds.map((id) => getVendorById(id)).filter(Boolean) as Vendor[];
 }
-
 export function getMarketsByVendor(vendorId: string): Market[] {
   const vendor = getVendorById(vendorId);
   if (!vendor) return [];
   return vendor.marketIds.map((id) => getMarketById(id)).filter(Boolean) as Market[];
 }
-
 export function getFeaturedMarkets(): Market[] {
   return markets.filter((m) => m.featured);
 }
-
 export function getHotMarkets(): Market[] {
   return markets.filter((m) => m.hot);
 }
-
 export function getMarketsByRegion(region: string): Market[] {
   return markets.filter((m) => m.region === region);
 }
-
 export function getMarketsByCategory(category: string): Market[] {
   return markets.filter((m) => m.categories.includes(category));
 }

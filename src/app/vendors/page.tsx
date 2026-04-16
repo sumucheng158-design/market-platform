@@ -23,7 +23,6 @@ export default function VendorsPage({
         <p className="section-subtitle">認識那些讓市集更有溫度的職人們</p>
       </div>
 
-      {/* Category filter */}
       <div className="flex flex-wrap gap-2 mb-10">
         <Link
           href="/vendors"
@@ -35,14 +34,17 @@ export default function VendorsPage({
           <Link
             key={cat.id}
             href={`/vendors?category=${cat.slug}`}
-            className={`tag transition-all ${category === cat.slug ? 'bg-latte-700 text-cream-50' : `${cat.color} hover:opacity-80`}`}
+            className={`tag transition-all inline-flex items-center gap-1.5 ${category === cat.slug ? 'bg-latte-700 text-cream-50' : `${cat.color} ${cat.textColor} hover:opacity-80`}`}
           >
-            {cat.icon} {cat.name}
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d={cat.iconPath} />
+            </svg>
+            {cat.name}
           </Link>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((vendor) => (
           <VendorCard key={vendor.id} vendor={vendor} />
         ))}

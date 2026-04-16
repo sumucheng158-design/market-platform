@@ -19,7 +19,6 @@ export default function BlogPage() {
         <p className="section-subtitle">職人故事、市集攻略、生活靈感</p>
       </div>
 
-      {/* Featured Article */}
       {featured && (
         <Link href={`/blog/${featured.slug}`} className="group block mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
@@ -44,15 +43,15 @@ export default function BlogPage() {
               <p className="text-latte-500 text-sm leading-relaxed mb-6">{featured.excerpt}</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4 text-xs text-latte-400">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={12} /> {featured.publishedAt}
+                  <span className="flex items-center gap-1.5">
+                    <Calendar size={12} strokeWidth={1.8} /> {featured.publishedAt}
                   </span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={12} /> {featured.readTime} 分鐘閱讀
+                  <span className="flex items-center gap-1.5">
+                    <Clock size={12} strokeWidth={1.8} /> {featured.readTime} 分鐘閱讀
                   </span>
                 </div>
                 <span className="text-xs font-medium text-latte-600 flex items-center gap-1">
-                  閱讀全文 <ArrowRight size={12} />
+                  閱讀全文 <ArrowRight size={12} strokeWidth={2} />
                 </span>
               </div>
             </div>
@@ -60,7 +59,6 @@ export default function BlogPage() {
         </Link>
       )}
 
-      {/* Article Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {rest.map((article) => (
           <Link key={article.id} href={`/blog/${article.slug}`} className="card group block">
@@ -85,7 +83,7 @@ export default function BlogPage() {
               <div className="flex items-center justify-between text-xs text-latte-400">
                 <span>{article.author}</span>
                 <span className="flex items-center gap-1">
-                  <Clock size={11} /> {article.readTime} 分鐘
+                  <Clock size={11} strokeWidth={1.8} /> {article.readTime} 分鐘
                 </span>
               </div>
             </div>
@@ -93,7 +91,6 @@ export default function BlogPage() {
         ))}
       </div>
 
-      {/* SEO-friendly category section */}
       <section className="mt-16 p-8 bg-cream-100 rounded-3xl">
         <h2 className="font-display text-xl font-semibold text-ink mb-6">熱門主題</h2>
         <div className="flex flex-wrap gap-3">

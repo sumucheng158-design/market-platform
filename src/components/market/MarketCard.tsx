@@ -32,23 +32,28 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
   if (variant === 'compact') {
     return (
       <Link href={`/markets/${market.id}`} className="card flex gap-4 p-4 group">
-        <div className="relative w-20 h-20 flex-shrink-0 rounded-2xl overflow-hidden">
-          <Image src={market.coverImage} alt={market.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+        <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden">
+          <Image
+            src={market.coverImage}
+            alt={market.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-display text-sm font-semibold text-ink line-clamp-1">{market.name}</h3>
-          <div className="flex items-center gap-1 mt-1 text-xs text-latte-500">
-            <Calendar size={11} />
+          <div className="flex items-center gap-1 mt-1.5 text-xs text-latte-500">
+            <Calendar size={11} strokeWidth={1.8} />
             <span>{formatDate(market.date, market.endDate)}</span>
           </div>
-          <div className="flex items-center gap-1 mt-0.5 text-xs text-latte-500">
-            <MapPin size={11} />
+          <div className="flex items-center gap-1 mt-1 text-xs text-latte-500">
+            <MapPin size={11} strokeWidth={1.8} />
             <span className="line-clamp-1">{market.location}</span>
           </div>
         </div>
         {market.hot && (
-          <div className="flex-shrink-0 flex items-center gap-1 text-orange-500 text-xs font-medium">
-            <Flame size={14} />
+          <div className="flex-shrink-0 flex items-center text-orange-500">
+            <Flame size={14} strokeWidth={1.8} />
           </div>
         )}
       </Link>
@@ -57,7 +62,7 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
 
   if (variant === 'featured') {
     return (
-      <Link href={`/markets/${market.id}`} className="group relative rounded-3xl overflow-hidden shadow-warm-lg block h-[480px]">
+      <Link href={`/markets/${market.id}`} className="group relative rounded-2xl overflow-hidden shadow-warm-lg block h-[460px]">
         <Image
           src={market.coverImage}
           alt={market.name}
@@ -65,23 +70,29 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
           className="object-cover group-hover:scale-105 transition-transform duration-700"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="flex items-center gap-2 mb-3">
             {market.hot && (
-              <span className="inline-flex items-center gap-1 bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-medium">
-                <Flame size={11} /> 熱門
+              <span className="inline-flex items-center gap-1.5 bg-orange-500 text-white text-xs px-3 py-1.5 rounded-full font-medium">
+                <Flame size={11} strokeWidth={2} /> 熱門
               </span>
             )}
             {mainCategory && (
-              <span className={`tag ${mainCategory.color}`}>{mainCategory.icon} {mainCategory.name}</span>
+              <span className={`tag ${mainCategory.color} ${mainCategory.textColor}`}>
+                {mainCategory.name}
+              </span>
             )}
           </div>
-          <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-2">{market.name}</h2>
-          <p className="text-white/80 text-sm mb-4 line-clamp-2">{market.tagline}</p>
-          <div className="flex items-center gap-4 text-white/70 text-sm">
-            <span className="flex items-center gap-1.5"><Calendar size={14} />{formatDate(market.date, market.endDate)}</span>
-            <span className="flex items-center gap-1.5"><MapPin size={14} />{market.location}</span>
+          <h2 className="font-display text-2xl md:text-3xl font-semibold text-white mb-2 leading-snug">{market.name}</h2>
+          <p className="text-white/75 text-sm mb-5 line-clamp-2 leading-relaxed">{market.tagline}</p>
+          <div className="flex items-center gap-5 text-white/65 text-sm">
+            <span className="flex items-center gap-1.5">
+              <Calendar size={13} strokeWidth={1.8} />{formatDate(market.date, market.endDate)}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={13} strokeWidth={1.8} />{market.location}
+            </span>
           </div>
         </div>
       </Link>
@@ -98,14 +109,14 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-3 left-3 flex gap-2">
+        <div className="absolute top-3 left-3 flex gap-1.5">
           {market.hot && (
             <span className="inline-flex items-center gap-1 bg-orange-500 text-white text-xs px-2.5 py-1 rounded-full font-medium shadow-sm">
-              <Flame size={10} /> 熱門
+              <Flame size={10} strokeWidth={2} /> 熱門
             </span>
           )}
           {market.admissionFee === 0 && (
-            <span className="bg-sage-300 text-sage-500 text-xs px-2.5 py-1 rounded-full font-medium shadow-sm">免費入場</span>
+            <span className="bg-sage-300/90 text-sage-500 text-xs px-2.5 py-1 rounded-full font-medium shadow-sm">免費入場</span>
           )}
         </div>
       </div>
@@ -114,22 +125,24 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-display text-base font-semibold text-ink line-clamp-1">{market.name}</h3>
           {mainCategory && (
-            <span className={`tag flex-shrink-0 ${mainCategory.color}`}>{mainCategory.icon}</span>
+            <span className={`tag flex-shrink-0 text-xs ${mainCategory.color} ${mainCategory.textColor}`}>
+              {mainCategory.name}
+            </span>
           )}
         </div>
         <p className="text-xs text-latte-500 line-clamp-2 mb-4 leading-relaxed">{market.tagline}</p>
 
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-xs text-latte-600">
-            <Calendar size={13} className="flex-shrink-0 text-latte-400" />
+            <Calendar size={12} strokeWidth={1.8} className="flex-shrink-0 text-latte-400" />
             <span>{formatDate(market.date, market.endDate)} {market.time}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-latte-600">
-            <MapPin size={13} className="flex-shrink-0 text-latte-400" />
-            <span className="line-clamp-1">{market.location}，{market.address.split('市')[0]}市</span>
+            <MapPin size={12} strokeWidth={1.8} className="flex-shrink-0 text-latte-400" />
+            <span className="line-clamp-1">{market.location}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-latte-600">
-            <Users size={13} className="flex-shrink-0 text-latte-400" />
+            <Users size={12} strokeWidth={1.8} className="flex-shrink-0 text-latte-400" />
             <div className="flex-1 flex items-center gap-2">
               <div className="flex-1 h-1.5 bg-cream-200 rounded-full overflow-hidden">
                 <div
@@ -144,7 +157,7 @@ export default function MarketCard({ market, variant = 'default' }: MarketCardPr
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {market.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="tag text-xs"># {tag}</span>
+            <span key={tag} className="tag text-xs">{tag}</span>
           ))}
         </div>
       </div>

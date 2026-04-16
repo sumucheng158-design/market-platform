@@ -17,46 +17,38 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-cream-200">
       <nav className="container-base">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-latte-700 rounded-lg flex items-center justify-center group-hover:bg-latte-800 transition-colors">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 bg-latte-800 rounded-lg flex items-center justify-center group-hover:bg-latte-900 transition-colors">
               <span className="text-cream-50 font-display text-sm font-semibold">市</span>
             </div>
-            <span className="font-display text-lg font-semibold text-ink hidden sm:block">市集平台</span>
+            <span className="font-display text-base font-semibold text-ink hidden sm:block tracking-tight">市集平台</span>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="btn-ghost text-sm"
-              >
+              <Link key={link.href} href={link.href} className="btn-ghost text-sm">
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Actions */}
           <div className="flex items-center gap-2">
-            <button className="btn-ghost p-2" aria-label="搜尋">
-              <Search size={18} />
+            <button className="btn-ghost p-2 rounded-lg" aria-label="搜尋">
+              <Search size={17} strokeWidth={1.8} />
             </button>
-            <Link href="/apply" className="btn-primary hidden md:inline-flex text-sm py-2">
+            <Link href="/apply" className="btn-primary hidden md:inline-flex text-sm py-2 px-5">
               我要擺攤
             </Link>
             <button
-              className="md:hidden btn-ghost p-2"
+              className="md:hidden btn-ghost p-2 rounded-lg"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="選單"
             >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              {isOpen ? <X size={20} strokeWidth={1.8} /> : <Menu size={20} strokeWidth={1.8} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-cream-200 animate-fade-up">
             <div className="flex flex-col gap-1">

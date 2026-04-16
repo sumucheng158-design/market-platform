@@ -1,38 +1,45 @@
 import type { Metadata } from 'next';
+import { Noto_Serif_TC, Noto_Sans_TC } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
+const notoSerifTC = Noto_Serif_TC({
+  subsets: ['latin'],
+  weight: ['300', '400', '600'],
+  variable: '--font-display',
+  display: 'swap',
+  preload: false,
+});
+
+const notoSansTC = Noto_Sans_TC({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-body',
+  display: 'swap',
+  preload: false,
+});
+
 export const metadata: Metadata = {
   title: {
-    default: '市集 — 發現台灣最美好的市集活動',
+    default: '市集平台 — 發現台灣最美好的市集活動',
     template: '%s | 市集平台',
   },
-  description: '整合台灣各地市集活動資訊、攤商介紹與報名系統。找到你最愛的手作、美食、文創市集。',
-  keywords: ['市集', '台北市集', '台中市集', '手作市集', '文創市集', '美食市集'],
+  description: '整合台灣各地市集活動資訊、攤商介紹與報名系統。每個週末，找到讓你想出門的理由。',
   openGraph: {
-    type: 'website',
+    title: '市集平台',
+    description: '發現台灣最美好的市集活動',
     locale: 'zh_TW',
-    url: 'https://ichiji.tw',
-    siteName: '市集平台',
-    title: '市集 — 發現台灣最美好的市集活動',
-    description: '整合台灣各地市集活動資訊、攤商介紹與報名系統。',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    type: 'website',
   },
-  twitter: { card: 'summary_large_image' },
-  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-TW">
-      <body className="min-h-screen flex flex-col">
+    <html lang="zh-TW" className={`${notoSerifTC.variable} ${notoSansTC.variable}`}>
+      <body>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

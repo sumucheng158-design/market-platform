@@ -2,13 +2,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Instagram, Mail, Globe, ArrowLeft, Calendar, MapPin } from 'lucide-react';
+import { Instagram, Mail, Globe, ArrowLeft, Calendar } from 'lucide-react';
 import { getVendorById, getMarketsByVendor, categories, vendors } from '@/data/mockData';
 import MarketCard from '@/components/market/MarketCard';
 
-interface Props {
-  params: { id: string };
-}
+interface Props { params: { id: string } }
 
 export async function generateStaticParams() {
   return vendors.map((v) => ({ id: v.id }));
@@ -33,20 +31,13 @@ export default function VendorDetailPage({ params }: Props) {
 
   return (
     <div>
-      {/* Hero Cover */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
-        <Image
-          src={vendor.coverImage}
-          alt={vendor.name}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <Image src={vendor.coverImage} alt={vendor.name} fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
         <div className="absolute top-6 left-0 right-0">
           <div className="container-base">
             <Link href="/vendors" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm bg-black/20 backdrop-blur-sm px-3 py-2 rounded-xl transition-colors">
-              <ArrowLeft size={14} /> 返回攤商列表
+              <ArrowLeft size={14} strokeWidth={2} /> 返回攤商列表
             </Link>
           </div>
         </div>
@@ -54,9 +45,7 @@ export default function VendorDetailPage({ params }: Props) {
 
       <div className="container-base py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Main */}
           <div className="lg:col-span-2 space-y-10">
-            {/* Brand Info */}
             <section>
               <div className="flex items-start gap-4 mb-6">
                 <div className="relative w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border-4 border-white shadow-card -mt-16 bg-cream-100">
@@ -66,23 +55,22 @@ export default function VendorDetailPage({ params }: Props) {
                   <div className="flex items-center gap-2 mb-1">
                     <h1 className="font-display text-2xl md:text-3xl font-semibold text-ink">{vendor.name}</h1>
                     {vendor.featured && (
-                      <span className="tag bg-latte-700 text-cream-50 text-xs">✨ 精選</span>
+                      <span className="tag bg-latte-700 text-cream-50 text-xs">精選</span>
                     )}
                   </div>
                   {category && (
-                    <span className={`tag text-xs ${category.color}`}>{category.icon} {category.name}</span>
+                    <span className={`tag text-xs ${category.color} ${category.textColor}`}>{category.name}</span>
                   )}
                 </div>
               </div>
               <p className="text-latte-700 leading-loose">{vendor.description}</p>
               <div className="flex flex-wrap gap-2 mt-4">
                 {vendor.tags.map((tag) => (
-                  <span key={tag} className="tag"># {tag}</span>
+                  <span key={tag} className="tag">{tag}</span>
                 ))}
               </div>
             </section>
 
-            {/* Images */}
             {vendor.images.length > 0 && (
               <section>
                 <h2 className="font-display text-xl font-semibold text-ink mb-4">商品圖片</h2>
@@ -96,7 +84,6 @@ export default function VendorDetailPage({ params }: Props) {
               </section>
             )}
 
-            {/* Participated Markets */}
             {participatedMarkets.length > 0 && (
               <section>
                 <h2 className="font-display text-xl font-semibold text-ink mb-2">曾參加的市集</h2>
@@ -110,7 +97,6 @@ export default function VendorDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* Sidebar */}
           <div>
             <div className="card p-6 sticky top-20">
               <h3 className="font-display text-base font-semibold text-ink mb-5">聯絡資訊</h3>
@@ -123,7 +109,7 @@ export default function VendorDetailPage({ params }: Props) {
                     className="flex items-center gap-3 p-3 rounded-2xl bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-colors group"
                   >
                     <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                      <Instagram size={16} className="text-white" />
+                      <Instagram size={15} strokeWidth={1.8} className="text-white" />
                     </div>
                     <div>
                       <p className="text-xs text-latte-400">Instagram</p>
@@ -136,8 +122,8 @@ export default function VendorDetailPage({ params }: Props) {
                     href={`mailto:${vendor.contact}`}
                     className="flex items-center gap-3 p-3 rounded-2xl bg-cream-100 hover:bg-cream-200 transition-colors"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-latte-200 flex items-center justify-center flex-shrink-0">
-                      <Mail size={16} className="text-latte-600" />
+                    <div className="w-9 h-9 rounded-xl bg-latte-100 flex items-center justify-center flex-shrink-0">
+                      <Mail size={15} strokeWidth={1.8} className="text-latte-600" />
                     </div>
                     <div>
                       <p className="text-xs text-latte-400">Email</p>
@@ -152,8 +138,8 @@ export default function VendorDetailPage({ params }: Props) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 rounded-2xl bg-cream-100 hover:bg-cream-200 transition-colors"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-latte-200 flex items-center justify-center flex-shrink-0">
-                      <Globe size={16} className="text-latte-600" />
+                    <div className="w-9 h-9 rounded-xl bg-latte-100 flex items-center justify-center flex-shrink-0">
+                      <Globe size={15} strokeWidth={1.8} className="text-latte-600" />
                     </div>
                     <div>
                       <p className="text-xs text-latte-400">官方網站</p>
@@ -165,7 +151,7 @@ export default function VendorDetailPage({ params }: Props) {
 
               <div className="mt-6 pt-5 border-t border-cream-200">
                 <div className="flex items-center gap-2 text-xs text-latte-400 mb-3">
-                  <Calendar size={13} />
+                  <Calendar size={12} strokeWidth={1.8} />
                   <span>參加過 {participatedMarkets.length} 場市集</span>
                 </div>
                 <Link href="/apply" className="btn-primary w-full justify-center text-sm">

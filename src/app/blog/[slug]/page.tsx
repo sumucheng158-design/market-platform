@@ -2,12 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowLeft, ArrowRight, Tag } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import { articles } from '@/data/mockData';
 
-interface Props {
-  params: { slug: string };
-}
+interface Props { params: { slug: string } }
 
 export async function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -32,52 +30,44 @@ export default function BlogPostPage({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) notFound();
 
-  const related = articles.filter(
-    (a) => a.id !== article.id && a.tags.some((t) => article.tags.includes(t))
-  ).slice(0, 2);
+  const related = articles
+    .filter((a) => a.id !== article.id && a.tags.some((t) => article.tags.includes(t)))
+    .slice(0, 2);
 
   return (
     <div>
-      {/* Hero */}
       <div className="relative h-[45vh] md:h-[55vh] overflow-hidden">
         <Image src={article.coverImage} alt={article.title} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
         <div className="absolute top-6 left-0 right-0">
           <div className="container-base">
             <Link href="/blog" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm bg-black/20 backdrop-blur-sm px-3 py-2 rounded-xl transition-colors">
-              <ArrowLeft size={14} /> 返回文章列表
+              <ArrowLeft size={14} strokeWidth={2} /> 返回文章列表
             </Link>
           </div>
         </div>
       </div>
 
       <div className="container-base py-10 max-w-3xl">
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-5">
           {article.tags.map((tag) => (
             <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
 
-        {/* Title */}
         <h1 className="font-display text-3xl md:text-4xl font-semibold text-ink leading-snug mb-5">
           {article.title}
         </h1>
 
-        {/* Meta */}
         <div className="flex items-center gap-5 text-sm text-latte-400 mb-10 pb-8 border-b border-cream-200">
           <span className="font-medium text-latte-600">{article.author}</span>
-          <span className="flex items-center gap-1.5"><Calendar size={13} />{article.publishedAt}</span>
-          <span className="flex items-center gap-1.5"><Clock size={13} />{article.readTime} 分鐘閱讀</span>
+          <span className="flex items-center gap-1.5"><Calendar size={13} strokeWidth={1.8} />{article.publishedAt}</span>
+          <span className="flex items-center gap-1.5"><Clock size={13} strokeWidth={1.8} />{article.readTime} 分鐘閱讀</span>
         </div>
 
-        {/* Excerpt as lead */}
-        <p className="text-latte-700 text-lg leading-loose mb-8 font-medium">
-          {article.excerpt}
-        </p>
+        <p className="text-latte-700 text-lg leading-loose mb-8 font-medium">{article.excerpt}</p>
 
-        {/* Demo content */}
-        <div className="prose-content space-y-6 text-latte-700 leading-loose">
+        <div className="space-y-6 text-latte-700 leading-loose">
           <p>
             台灣的市集文化在過去十年間蓬勃發展，從早期零星的跳蚤市場，到現在每個週末在各大城市舉行的精緻文創市集，這股風潮反映了台灣人對於慢生活的渴望，以及對在地職人手作的重視。
           </p>
@@ -95,25 +85,30 @@ export default function BlogPostPage({ params }: Props) {
           <p>
             除此之外，時間與地點的便利性也很重要。許多市集選在交通便利的公園或文創園區舉行，週末帶著輕便的袋子出門，就能展開一段愉快的市集之旅。
           </p>
-          <div className="bg-cream-100 rounded-3xl p-8 my-8">
-            <p className="font-display text-base font-semibold text-ink mb-2">📌 小提醒</p>
+          <div className="bg-cream-100 border border-cream-200 rounded-3xl p-8 my-8">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-latte-500" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z M12 7v3l2 2" />
+                </svg>
+              </div>
+              <p className="font-display text-base font-semibold text-ink">小提醒</p>
+            </div>
             <p className="text-sm text-latte-600 leading-relaxed">
               市集通常在戶外舉行，建議提前確認天氣，並攜帶環保購物袋。部分熱門攤商商品有限，建議早點到場！
             </p>
           </div>
         </div>
 
-        {/* Tags footer */}
         <div className="mt-12 pt-8 border-t border-cream-200 flex flex-wrap gap-2">
           {article.tags.map((tag) => (
-            <Link key={tag} href={`/blog?tag=${tag}`} className="tag hover:bg-latte-700 hover:text-cream-50 transition-colors">
-              <Tag size={11} className="mr-1" /> {tag}
+            <Link key={tag} href={`/blog?tag=${tag}`} className="tag hover:bg-latte-700 hover:text-cream-50 transition-colors inline-flex items-center gap-1">
+              <Tag size={11} strokeWidth={1.8} /> {tag}
             </Link>
           ))}
         </div>
       </div>
 
-      {/* Related Articles */}
       {related.length > 0 && (
         <div className="bg-cream-100 mt-16 py-16">
           <div className="container-base">
