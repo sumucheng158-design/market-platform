@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 
 const notoSerifTC = Noto_Serif_TC({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
+  weight: ['300', '400', '600', '700'],
   variable: '--font-display',
   display: 'swap',
   preload: false,
@@ -14,7 +14,7 @@ const notoSerifTC = Noto_Serif_TC({
 
 const notoSansTC = Noto_Sans_TC({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
   preload: false,
@@ -38,8 +38,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-TW" className={`${notoSerifTC.variable} ${notoSansTC.variable}`}>
       <body>
+        {/* Item 11: Skip to main content for accessibility */}
+        <a href="#main-content" className="skip-link">跳到主要內容</a>
         <Navbar />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>
