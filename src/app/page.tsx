@@ -22,43 +22,46 @@ export default function HomePage() {
     <div>
 
       {/* ══════════════════════════════════════════════════════
-          HERO
-          Items 1 (gradient overlay), 2 (font weight+shadow),
-          3 (badge readable), 6 (clamp responsive), 8 (proof),
-          11 (alt text), 12 (aria)
+          HERO — 修正模糊問題
+          1. 移除 grain-overlay（其 ::after z-index:1 會蓋在文字上）
+          2. 改用 hero-grain（::before z-index:0，在圖片與 overlay 之下）
+          3. 文字容器 z-index:10 確保最高層
+          4. 圖片加 sizes 屬性提升清晰度
+          5. gradient overlay 改為更強的漸層確保對比
+          6. 移除 animate-fade-up 在 h1 上（opacity:0 動畫開始時造成視覺模糊）
           ══════════════════════════════════════════════════════ */}
       <section
-        className="relative overflow-hidden grain-overlay"
+        className="relative overflow-hidden hero-grain"
         style={{ minHeight: 'clamp(520px, 82vh, 860px)', display: 'flex', alignItems: 'center' }}
         aria-label="首頁主視覺"
       >
-        {/* Item 11: Descriptive alt for decorative hero bg */}
-        <div className="absolute inset-0">
+        {/* 背景圖片層 z-index:0（預設） */}
+        <div className="absolute inset-0" style={{ zIndex: 0 }}>
           <Image
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=90"
             alt="台灣市集攤位展示服飾與手作商品的熱鬧場景"
             fill
+            sizes="100vw"
             className="object-cover object-center"
             priority
           />
         </div>
 
-        {/* Item 1: Strong gradient overlay — left dark → right light */}
+        {/* Gradient overlay z-index:1 — 更強的漸層確保文字對比 */}
         <div
           className="absolute inset-0"
           aria-hidden="true"
           style={{
-            background: 'linear-gradient(108deg, rgba(28,16,6,0.82) 0%, rgba(28,16,6,0.62) 45%, rgba(28,16,6,0.18) 100%)',
+            zIndex: 1,
+            background: 'linear-gradient(108deg, rgba(20,10,3,0.88) 0%, rgba(20,10,3,0.72) 50%, rgba(20,10,3,0.28) 100%)',
           }}
         />
 
-        {/* Warm grain sits on top of overlay */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ zIndex: 1 }} />
-
-        <div className="relative container-base py-24 md:py-36" style={{ zIndex: 2 }}>
+        {/* 文字內容 z-index:10 — 確保在所有層之上，清晰顯示 */}
+        <div className="relative container-base py-24 md:py-36" style={{ zIndex: 10 }}>
           <div className="max-w-2xl">
 
-            {/* Item 3: Platform badge — now high-contrast with backdrop */}
+            {/* Badge */}
             <div
               className="inline-flex items-center gap-2 border text-xs px-4 py-2 rounded-full mb-6 animate-fade-up tracking-widest uppercase"
               style={{
@@ -73,13 +76,17 @@ export default function HomePage() {
               台灣最大市集資訊平台
             </div>
 
-            {/* Item 2 & 6: Bold headline + text-shadow + clamp for RWD */}
+            {/* 標題：不使用 animate-fade-up，避免 opacity:0 初始狀態造成模糊感 */}
+            {/* text-rendering: optimizeLegibility 確保字體清晰渲染 */}
             <h1
-              className="font-display font-bold leading-tight mb-6 animate-fade-up delay-100"
+              className="font-display font-bold leading-tight mb-6"
               style={{
                 fontSize: 'clamp(2.4rem, 5.5vw, 4rem)',
                 color: '#ffffff',
-                textShadow: '0 2px 24px rgba(0,0,0,0.45)',
+                textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.8)',
+                textRendering: 'optimizeLegibility',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
               }}
             >
               在市集裡，<br />
@@ -88,27 +95,28 @@ export default function HomePage() {
                 className="not-italic"
                 style={{
                   color: '#d4a853',
-                  textShadow: '0 2px 24px rgba(0,0,0,0.45), 0 0 40px rgba(212,168,83,0.25)',
+                  textShadow: '0 2px 12px rgba(0,0,0,0.6), 0 0 30px rgba(212,168,83,0.3)',
                 }}
               >
                 溫度
               </em>
             </h1>
 
-            {/* Item 3: Subtitle — max-width + text-shadow, never overlaps photo */}
+            {/* 副標題 */}
             <p
-              className="text-base md:text-lg leading-relaxed mb-10 max-w-lg animate-fade-up delay-200"
+              className="text-base md:text-lg leading-relaxed mb-10 max-w-lg animate-fade-up delay-100"
               style={{
-                color: 'rgba(255,255,255,0.88)',
-                textShadow: '0 1px 8px rgba(0,0,0,0.5)',
+                color: 'rgba(255,255,255,0.90)',
+                textShadow: '0 1px 6px rgba(0,0,0,0.7)',
+                textRendering: 'optimizeLegibility',
               }}
             >
               手作、美食、古物、文創——每個週末，<br className="hidden sm:block" />
               全台灣最精彩的市集活動都在這裡。
             </p>
 
-            {/* Item 7: CTA buttons — primary is gold for contrast */}
-            <div className="flex flex-wrap gap-4 animate-fade-up delay-300">
+            {/* CTA 按鈕 */}
+            <div className="flex flex-wrap gap-4 animate-fade-up delay-200">
               <Link
                 href="/markets"
                 className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
@@ -136,10 +144,10 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Item 8: Social proof strip */}
+            {/* 數據統計 */}
             <div
-              className="flex flex-wrap items-center gap-6 mt-10 pt-8 animate-fade-up delay-400"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}
+              className="flex flex-wrap items-center gap-6 mt-10 pt-8 animate-fade-up delay-300"
+              style={{ borderTop: '1px solid rgba(255,255,255,0.18)' }}
               aria-label="平台統計數據"
             >
               {[
@@ -151,11 +159,15 @@ export default function HomePage() {
                 <div key={i} className="flex flex-col">
                   <span
                     className="font-display font-bold leading-none"
-                    style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.6rem)', color: '#ffffff', textShadow: '0 1px 8px rgba(0,0,0,0.3)' }}
+                    style={{
+                      fontSize: 'clamp(1.3rem, 2.5vw, 1.6rem)',
+                      color: '#ffffff',
+                      textShadow: '0 1px 6px rgba(0,0,0,0.5)',
+                    }}
                   >
                     {item.number}
                   </span>
-                  <span className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.60)', letterSpacing: '0.03em' }}>
+                  <span className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.62)', letterSpacing: '0.03em' }}>
                     {item.label}
                   </span>
                 </div>
@@ -166,7 +178,7 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SEARCH BAR — Item 9
+          SEARCH BAR
           ══════════════════════════════════════════════════════ */}
       <section className="container-base pt-8 pb-2" aria-label="市集搜尋">
         <div
@@ -206,7 +218,7 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          CATEGORY QUICK NAV — Item 10
+          CATEGORY QUICK NAV
           ══════════════════════════════════════════════════════ */}
       <section className="container-base py-5" aria-label="市集分類篩選">
         <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-hide" role="list">
@@ -331,9 +343,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          CTA BANNER — Item 7: Strong dark CTA
-          ══════════════════════════════════════════════════════ */}
+      {/* CTA BANNER */}
       <section className="container-base py-20" aria-label="申請攤位">
         <div
           className="rounded-3xl p-10 md:p-16 relative overflow-hidden"
@@ -341,7 +351,6 @@ export default function HomePage() {
             background: 'linear-gradient(135deg, #453323 0%, #604830 50%, #7d5e3f 100%)',
           }}
         >
-          {/* Decorative circles */}
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full -translate-y-20 translate-x-20 pointer-events-none" style={{ background: 'rgba(255,255,255,0.04)' }} aria-hidden="true" />
           <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full translate-y-12 -translate-x-12 pointer-events-none" style={{ background: 'rgba(212,168,83,0.08)' }} aria-hidden="true" />
 
